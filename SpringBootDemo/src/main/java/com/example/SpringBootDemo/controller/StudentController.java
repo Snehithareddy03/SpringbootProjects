@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/student")
+@RequestMapping("/student")
 
 public class StudentController {
     @Autowired
@@ -23,5 +23,19 @@ public class StudentController {
     public ResponseEntity<Student> findStudent(@PathVariable Long id){
         Student student = studentservice.getStudent(id);
         return new ResponseEntity<>(student,HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Studentdto> updateStudent(
+            @PathVariable Long id,
+            @RequestBody Studentdto studentdto){
+        Studentdto updatedStudent = studentservice.updateStudent(id, studentdto);
+        return ResponseEntity.ok(updatedStudent);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        studentservice.deleteStudent(id);
+        return ResponseEntity.ok("student is deleted");
     }
 }

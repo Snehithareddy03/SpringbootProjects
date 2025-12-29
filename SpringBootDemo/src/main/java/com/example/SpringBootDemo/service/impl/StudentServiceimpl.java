@@ -44,7 +44,30 @@ public class StudentServiceimpl implements Studentservice {
     }
 
     public Student getStudent(Long id){
-        return repo.findById(id)
-                .orElseThrow(()->new RuntimeException("student not found"));
+        return repo.findByid(id);
+                //.orElseThrow(()->new RuntimeException("student not found"));
+    }
+
+    @Override
+    public Studentdto updateStudent(Long id, Studentdto studentdto) {
+        Student student = repo.findByid(id);
+                //.orElseThrow(()->new RuntimeException("student not found"));
+
+        student.setName(studentdto.getName());// updating the data from entity classes
+        student.setMarks(student.getMarks());
+
+        Student updatedStudent = repo.save(student);
+
+        // getting the data from dto class
+        return new Studentdto(
+                updatedStudent.getId(),
+                updatedStudent.getName(),
+                updatedStudent.getMarks()
+        );
+    }
+    @Override
+    public void deleteStudent(Long id){
+        Student student = repo.findByid(id);
+                repo.delete(student);
     }
 }

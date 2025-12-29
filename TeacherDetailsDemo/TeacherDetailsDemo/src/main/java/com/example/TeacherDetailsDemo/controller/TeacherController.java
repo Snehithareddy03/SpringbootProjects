@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/Teac her")
+@RequestMapping("/api/Teacher")
 public class TeacherController {
     @Autowired
     private Teacherservice teacherservice;
