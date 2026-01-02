@@ -26,4 +26,15 @@ public class BankController {
         BankEntity bankentity = service.getAccount(accountId);
         return new ResponseEntity<>(bankentity,HttpStatus.OK);
     }
+    @PutMapping("/{accountId}")
+
+    public ResponseEntity<BankDTO> updateAccount(@PathVariable Long accountId, @RequestBody BankDTO bankdto){
+        BankDTO BAM2 = service.updateAccount(accountId,bankdto);
+        return ResponseEntity.ok(BAM2);
+    }
+    @DeleteMapping("/{accountId}")
+    public ResponseEntity<String> deleteAccount(@PathVariable Long accountId){
+        service.deleteAccount(accountId);
+        return ResponseEntity.ok("account details deleted successfully");
+    }
 }
