@@ -19,9 +19,22 @@ public class TeacherController {
         Teacherdto saveTeacher =teacherservice.saveTeacher(teacherdto);
         return new ResponseEntity<>(saveTeacher, HttpStatus.CREATED);
     }
-    @GetMapping("{teacherid}")
-    public ResponseEntity<Teacher> findTeacher(@PathVariable Long teacherid){
-        Teacher teacher = teacherservice.getTeacher (teacherid);
+    @GetMapping("{teacherId}")
+    public ResponseEntity<Teacher> findTeacher(@PathVariable Long teacherId){
+        Teacher teacher = teacherservice.getTeacher (teacherId);
         return new ResponseEntity<>(teacher,HttpStatus.OK);
     }
+    @PutMapping("/{teacherId}")
+    public ResponseEntity<Teacherdto> updateTeacher(
+            @PathVariable Long teacherId,
+            @RequestBody Teacherdto teacherdto) {
+        Teacherdto updatedTeacher = teacherservice.updateTeacher(teacherId, teacherdto);
+        return ResponseEntity.ok(updatedTeacher);
+    }
+    @DeleteMapping("{id}")
+    public  ResponseEntity<String> delete(@PathVariable Long id){
+        teacherservice.deleteTeacher(id);
+        return ResponseEntity.ok("deleted data successfully");
+    }
+
 }

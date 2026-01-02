@@ -1,22 +1,24 @@
-package com.example.TeacherDetailsDemo.entity;
+package com.example.BankAccountManagement.entity;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-@jakarta.persistence.Entity
-@Table(name = "Teacher_Details")
-public class Teacher {
+@NoArgsConstructor
+public class BankEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+    private Long accountId;
     private String name;
-    private String department;
+    private String accountType;
+    private double balance;
+
 }

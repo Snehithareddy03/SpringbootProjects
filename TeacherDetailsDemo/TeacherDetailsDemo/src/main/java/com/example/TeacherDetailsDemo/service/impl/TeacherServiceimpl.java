@@ -14,22 +14,42 @@ public class TeacherServiceimpl implements Teacherservice {
     @Override
     public Teacherdto saveTeacher(Teacherdto teacherdto) {
         Teacher teacher = new Teacher(
-                teacherdto.getTeacherid(),
+                teacherdto.getId(),
                 teacherdto.getName(),
                 teacherdto.getDepartment()
         );
         Teacher savedTeacher = (Teacher) repository.save(teacher);
 
         Teacherdto  saveteacher = new Teacherdto(
-                savedTeacher.getTeacherid(),
+                savedTeacher.getId(),
                 savedTeacher.getName(),
                 savedTeacher.getDepartment()
         );
 
         return saveteacher;
     }
-    public Teacher getTeacher(Long teacherid){
-        return  repository.findById(teacherid)
-                .orElseThrow(()->new RuntimeException("teacher details not found"));
+    @Override
+    public Teacher getTeacher(Long id){
+        return  repository.findByid(id);
+                //.orElseThrow(()->new RuntimeException("teacher details not found"));
+    }
+
+
+    public Teacherdto updateTeacher(Long id, Teacherdto teacherdto){
+        Teacher teacher=repository.findByid(id);
+        teacher.setName(teacherdto.getName());
+        teacher.setDepartment(teacherdto.getDepartment());
+
+        Teacher updatedTeacher = repository.save(teacher);
+        return new Teacherdto(
+                updatedTeacher.getId(),
+                updatedTeacher.getName(),
+                updatedTeacher.getDepartment()
+        );
+    }
+
+    public void deleteTeacher(Long id){
+        Teacher teacher = repository.findByid(id);
+        repository.delete(teacher);
     }
 }

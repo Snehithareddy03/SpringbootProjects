@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Teacherdto {
-    private Long teacherid;
+    private Long id;
     private String name;
     private String department;
 }

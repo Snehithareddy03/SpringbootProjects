@@ -54,7 +54,7 @@ public class StudentServiceimpl implements Studentservice {
                 //.orElseThrow(()->new RuntimeException("student not found"));
 
         student.setName(studentdto.getName());// updating the data from entity classes
-        student.setMarks(student.getMarks());
+        student.setMarks(studentdto.getMarks());
 
         Student updatedStudent = repo.save(student);
 
