@@ -31,5 +31,19 @@ public class EmployeeServiceimpl implements Employeeservice {
         return repository.findById(employeeid)
                 .orElseThrow(()-> new RuntimeException("employee details not found"));
     }
-    //public Employeedto updateEmployee(Long emp)
+    public Employeedto updateEmployee(Long employeeid, Employeedto employeedto){
+        Employee employee = repository.findByemployeeid(employeeid);
+        employee.setName(employeedto.getName());
+        employee.setSalary(employeedto.getSalary());
+        Employee updatedEmployee = repository.save(employee);
+        return  new Employeedto(
+                updatedEmployee.getEmployeeid(),
+                updatedEmployee.getName(),
+                updatedEmployee.getSalary()
+        );
+    }
+    public void deleteEmployee(Long employeeid) {
+        Employee deleted = repository.findByemployeeid(employeeid);
+        repository.delete(deleted);
+    }
 }

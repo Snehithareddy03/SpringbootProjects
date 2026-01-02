@@ -6,4 +6,6 @@ import com.example.EmployeeDetails.entity.Employee;
 public interface Employeeservice {
     Employeedto saveEmployee(Employeedto employeedto);
     Employee getEmployee(Long employeeid);
+    Employeedto updateEmployee(Long employeeid,Employeedto employeedto);
+    void deleteEmployee(Long employeeid);
 }
