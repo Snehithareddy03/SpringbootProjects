@@ -27,5 +27,27 @@ public class StudentServiceimpl implements StudentService {
         );
         return saveStudent;
     }
+    public Student getStudent(Long id){
+//        Student gettingstudent = repository.findByid(id);
+//        return gettingstudent;
+        //or
+        return repository.findByid(id);
+    }
+    public StudentDto updateStudent(Long id,StudentDto studentdto){
+        Student student = repository.findByid(id);
+        student.setMarks(studentdto.getMarks());
+        student.setName(studentdto.getName());
+        Student updatedStudent = repository.save(student);
+        return  new StudentDto(
+                updatedStudent.getId(),
+                updatedStudent.getName(),
+                updatedStudent.getMarks()
+        );
+    }
+    public void deleteStudent(Long id){
+        Student deleted = repository.findByid(id);
+        repository.delete(deleted);
+
+    }
 }
 
