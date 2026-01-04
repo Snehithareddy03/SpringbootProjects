@@ -5,4 +5,6 @@ import com.example.CustomerDetails.entity.CustomerEntity;
 
 public interface CustomerService {
     CustomerDTO createCustomer(CustomerDTO customerdto);
+    CustomerEntity getCustomer(Long customerId);
+    CustomerDTO updateCustomer(Long customerId,CustomerDTO customerdto);
 }

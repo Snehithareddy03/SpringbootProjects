@@ -29,4 +29,20 @@ public class CustomerServiceimpl implements CustomerService {
         );
         return createCustomer;
     }
+    public CustomerEntity getCustomer(Long customerId){
+        return repo.findBycustomerId(customerId);
+    }
+    public CustomerDTO updateCustomer(Long customerId,CustomerDTO customerdto){
+        CustomerEntity customer= repo.findBycustomerId(customerId);
+        customer.setAmount(customerdto.getAmount());
+        customer.setName(customerdto.getName());
+        customer.setNumber(customerdto.getNumber());
+        CustomerEntity updated = repo.save(customer);
+        return new CustomerDTO(
+                updated.getCustomerId(),
+                updated.getName(),
+                updated.getNumber(),
+                updated.getAmount()
+        );
+    }
 }
