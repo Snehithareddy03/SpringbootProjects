@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.PublicKey;
+
 @RestController
 @RequestMapping("/api/courier")
 public class CourierController {
@@ -23,5 +25,15 @@ public class CourierController {
     public ResponseEntity<CourierEntity> getCourier(@PathVariable Long courierId){
         CourierEntity m2 = service.getCourier(courierId);
         return new ResponseEntity<>(m2,HttpStatus.OK);
+    }
+    @PutMapping("/{courierId}")
+    public ResponseEntity<CourierDTO> updateCourier(@PathVariable Long courierId,@RequestBody CourierDTO courierdto){
+        CourierDTO m3 = service.updateCourier(courierId,courierdto);
+        return new ResponseEntity<>(m3,HttpStatus.CREATED);
+    }
+    @DeleteMapping("/{courierId}")
+    public ResponseEntity<String> deleteCourier(@PathVariable Long courierId){
+        service.deleteCourier(courierId);
+        return ResponseEntity.ok("deleted successfully");
     }
 }

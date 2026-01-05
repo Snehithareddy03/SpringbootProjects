@@ -19,7 +19,7 @@ public class CustomerServiceimpl implements CustomerService {
                 customerdto.getNumber(),
                 customerdto.getAmount()
         );
-        CustomerEntity createdCustomer = (CustomerEntity) repo.save(customer);
+        CustomerEntity createdCustomer =  repo.save(customer);
 
         CustomerDTO createCustomer = new CustomerDTO(
                 createdCustomer.getCustomerId(),
@@ -44,5 +44,9 @@ public class CustomerServiceimpl implements CustomerService {
                 updated.getNumber(),
                 updated.getAmount()
         );
+    }
+    public void deleteCustomer(Long customerId){
+        CustomerEntity deleted = repo.findBycustomerId(customerId);
+        repo.delete(deleted);
     }
 }

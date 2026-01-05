@@ -7,4 +7,5 @@ public interface CustomerService {
     CustomerDTO createCustomer(CustomerDTO customerdto);
     CustomerEntity getCustomer(Long customerId);
     CustomerDTO updateCustomer(Long customerId,CustomerDTO customerdto);
+    void  deleteCustomer(Long customerId);
 }
